@@ -30,7 +30,17 @@ class WordCloud:
             <div style="text-align: center; vertical-align: middle; font-family: arial; color: white; background-color:black; border:1px solid black">')
 
         # your code goes here!
-        fo.write('<span style="font-size: 20px"> HELLO </span>')
+        my_file = open('gettisburg.txt', 'r')
+
+        for speech in my_file:
+            line = speech.split()
+
+            for word in line:
+                count = str(the_dict[word] * 10)
+
+                fo.write('<span style="font-size: ' + count + 'px">' + word + ' </span>')
+
+        my_file.close()
 
         fo.write('</div>\
             </body>\
@@ -49,7 +59,29 @@ class WordCloud:
     # returns a dictionary
     def create_dict(self):
         my_dict = {}
+
         # your code goes here:
+        my_file = open('gettisburg.txt', 'r')
+
+        for speech in my_file:
+            line = speech.split()
+
+            for word in line:
+                my_dict[word] = 0
+
+        my_file.close()
+
+        my_file = open('gettisburg.txt', 'r')
+
+        for speech in my_file:
+            line = speech.split()
+
+            for word in line:
+                self.add_to_dict(word, my_dict)
+
+        # print(my_dict)
+
+        my_file.close()
 
         return my_dict
 
@@ -62,6 +94,9 @@ class WordCloud:
     # returns a dictionary
     def add_to_dict(self, word, the_dict):
         # your code goes here
+        for check in the_dict:
+            if word == check:
+                the_dict[word] += 1
 
         return the_dict
 
