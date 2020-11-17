@@ -79,17 +79,95 @@ class WordGames:
         print("User input was: "+self.the_words)
 
 class WordDuplication(WordGames): # you implement this and provide docstrings
-    pass
+    '''
+    Class to represent the word duplication game.
+    This class inherits from the WordGames base class.
+
+    Attributes: Inherited from WordGames
+    ___________
+        __my_words : str
+                The value of the word or sentence that has
+                been inputted by a user.
+
+    Methods:
+    --------
+        word_play:
+            Overridden method from the base class'
+            word_play. The game play happens here.
+    '''
+
+    def word_play(self):
+        '''
+        Plays the game. Overrides super().word_play().
+        This game duplicates every word that the user has
+        entered. The result is printed to standard output.
+
+        Attributes: None.
+        -----------
+
+
+        Returns: None.
+        --------
+        '''
+
+        print("User input doubled: ")
+        # easy option
+        print(self.the_words + ' ' + self.the_words)
 
 class WordScramble(WordGames): # you implement this and provide docstrings
-    pass
+    '''
+    Class to represent the word scrambling game.
+    The class inherits from the WordGames base class.
+
+    Attributes: Inherited from WordGames
+    -----------
+
+    Methods:
+    --------
+        word_play:
+            Overridden method from the base class'
+            word_play. The game play happens here.
+    '''
+
+    def word_play(self):
+        '''
+        Plays the game. Overrides super().word_play().
+        This game scrambles every word that the user has
+        entered. The result is printed to standard output.
+        Words need to be longer that 3 characters in length
+        to be scrambled.
+
+        Attributes: None.
+        -----------
+
+        Returns: None.
+        --------
+        '''
+
+        scrambled = ''
+        list_of_words = self.the_words.split()
+        tuple_of_punctuation = (',', '.', ';', '?', ' ', '!')
+
+        for word in list_of_words:
+            if (len(word) > 4 and word not in tuple_of_punctuation):
+                # uses first letter, then last, then what's inbetween, then the second
+                scrambled += word[0] + word[-1] + word[2:-1] + word[1] + ' '
+            else:
+                print("Too few letters for scrambling: ", word)
+
+        print(scrambled)
 
 
 # prints the docstrings info
 # if this class was a python module
-print(WordGames.__doc__)
+# print(WordGames.__doc__)
 
 # Create an instances of the classes here:
-wg = WordGames()
-wg.word_play()
+# wg = WordGames()
+# wg.word_play()
 
+# wd = WordDuplication()
+# wd.word_play()
+
+ws = WordScramble()
+ws.word_play()
