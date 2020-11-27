@@ -20,9 +20,13 @@ class MathsGame(ABC):
     def user_input_property(self):
         pass
 
+
 class Fibonacci(MathsGame):
+    COUNTER = 0
+
     def __init__(self):
         self.__user_input = 0
+        self.counter = 0
         super().__init__()
 
     def play_game(self):
@@ -49,6 +53,13 @@ class Fibonacci(MathsGame):
                     print(", ", end='')
         print("]")
 
+        self.user_input_property = int(input("What is the next term? "))
+
+        if self.user_input_property <= term1:
+            self.counter += 1
+        else:
+            print("Incorrect - the next term is {0:d}".format(term1))
+
     @property
     def user_input_property(self):
         return self.__user_input
@@ -56,6 +67,7 @@ class Fibonacci(MathsGame):
     @user_input_property.setter
     def user_input_property(self, value):
         self.__user_input = value
+
 
 f = Fibonacci()
 f.play_game()
