@@ -19,3 +19,19 @@ class MathsGame(ABC):
     @abstractmethod
     def user_input_property(self):
         pass
+
+class Fibonacci(MathsGame):
+    def __init__(self):
+        self.__user_input = 0
+        super().__init__()
+
+    def play_game(self):
+        pass
+
+    @property
+    def user_input_property(self):
+        return self.__user_input
+
+    @user_input_property.setter
+    def user_input_property(self, value):
+        self.__user_input = value
