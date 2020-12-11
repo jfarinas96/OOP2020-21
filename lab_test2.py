@@ -79,7 +79,12 @@ class Document:
 
         Returns: none.
         """
-        self.cursor_prop += steps
+        if steps + self.cursor_prop > len(characters):
+            raise IndexError("Out of range")
+        if steps <= 0:
+            raise IndexError("Out of range - must be a whole number")
+        else:
+            self.cursor_prop += steps
 
     def backward(self, steps):
         """
