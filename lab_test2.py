@@ -16,8 +16,19 @@ class Document:
 
     def __init__(self, file_name):
         self.characters = []
-        self.cursor = 0
+        self.__cursor = 0
         self.filename = file_name
+
+    @property
+    def cursor_prop(self):
+        return self.__cursor
+
+    @cursor_prop.setter
+    def cursor_prop(self, value):
+        if self.__cursor > len(characters) + 1:
+            raise Exception("Only one letter at a time")
+        else:
+            self.__cursor = value
 
     def insert(self, character):
         """
@@ -31,8 +42,8 @@ class Document:
         returns: no return
         -------
         """
-        self.characters.insert(self.cursor, character)
-        self.cursor += 1
+        self.characters.insert(self.cursor_prop, character)
+        self.cursor_prop += 1
 
     def delete(self):
         """
@@ -41,7 +52,7 @@ class Document:
         Arguments: none
         Returns: none
         """
-        del self.characters[self.cursor]
+        del self.characters[self.cursor_prop]
 
     def save(self):
         """
@@ -68,7 +79,7 @@ class Document:
 
         Returns: none.
         """
-        self.cursor += steps
+        self.cursor_prop += steps
 
     def backward(self, steps):
         """
@@ -81,12 +92,12 @@ class Document:
 
         Returns: none
         """
-        if steps > self.cursor:
+        if steps > self.cursor_prop:
             raise IndexError("Out of range")
         if steps <= 0:
             raise IndexError("Out of range - must be a whole number")
         else:
-            self.cursor -= steps
+            self.cursor_prop -= steps
 
 
 # initialising an object and using the class
