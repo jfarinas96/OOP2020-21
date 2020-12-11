@@ -12,6 +12,17 @@ class Document:
     """
     Class to handle file management for file writing.
     Class Document receives the file name at initialisation.
+
+    Attributes:
+    -----------
+        characters : list
+            Stores characters in the document
+
+        __cursor : int
+            Position of the cursor
+
+        filename : str
+            Name of the file
     """
 
     def __init__(self, file_name):
@@ -79,6 +90,7 @@ class Document:
 
         Returns: none.
         """
+        # Checks if steps will make cursor go over the range of the characters list
         if steps + self.cursor_prop > len(characters):
             raise IndexError("Out of range")
         if steps <= 0:
@@ -97,6 +109,7 @@ class Document:
 
         Returns: none
         """
+        # Check if steps is greater than cursor - goes out of range
         if steps > self.cursor_prop:
             raise IndexError("Out of range")
         if steps <= 0:
@@ -115,4 +128,5 @@ for letter in characters:
 doc.backward(4)
 doc.delete()
 doc.insert('n')
+# doc.forward(4)
 doc.save()
