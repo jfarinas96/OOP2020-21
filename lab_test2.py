@@ -4,6 +4,10 @@
 # B. Schoen-Phelan
 # 11-12-2020
 
+# Lab Test 2
+# Author: Janae Fariñas
+# Date: 11-12-2020
+
 class Document:
     """
     Class to handle file management for file writing.
