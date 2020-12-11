@@ -81,7 +81,12 @@ class Document:
 
         Returns: none
         """
-        self.cursor -= steps
+        if steps > self.cursor:
+            raise IndexError("Out of range")
+        if steps <= 0:
+            raise IndexError("Out of range - must be a whole number")
+        else:
+            self.cursor -= steps
 
 
 # initialising an object and using the class
